@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+
+    <title></title>
+
+   <link  th:href="@{/resource/css/bootstrap.min.css?v=3.4.0}"  rel="stylesheet">
+     <link  th:href="@{/resource/font-awesome/css/font-awesome.css?v=4.3.0}"  rel="stylesheet">
+    <link th:href="@{/resource/css/plugins/iCheck/custom.css}"  rel="stylesheet">
+   <link  th:href="@{/resource/css/animate.css}" rel="stylesheet">
+    <link  th:href="@{/resource/css/style.css?v=2.2.0}" rel="stylesheet">
+    
+
+<script type="text/javascript">
+		
+	
+function gotoAdd(){
+	window.location.href="/admin/gotoAddUser";
+}
+
+		
+		
+function del(){
+	var msg = "您确认要删除此记录吗？";
+	if(confirm(msg) == true)
+		return true;
+	else
+		return false;
+}
+		</script>
+    
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div th:replace="head::copy">
+           
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                  <div th:replace="head::menu">
+           
+                 </div>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>列表展示</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="/">主页</a>
+                        </li>
+                        <li>
+                            <a>员工管理</a>
+                        </li>
+                        <li>
+                            <strong>员工列表</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                
+                <div class="row">
+                    
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                            
+							<button type="button" onclick="gotoAdd()" class="btn btn-w-m btn-danger">
+									添加用户信息
+								</button>
+							
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <form action="/admin/user" method="post" class="form-horizontal m-t" id="signupForm">
+                                    <div class="col-sm-3">
+                                        <div class="input-group">
+                                        <input type="text" name="name" placeholder="请输入用户名" class="input-sm form-control"> 
+                                        <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-sm btn-primary"> 搜索</button> 
+                                        </span>
+                                        </div>
+                                    </div>
+                                    </form>
+                                </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>用户名</th>
+                                            <th>密码</th>
+                                            <th>性别</th>
+                                            <th>年龄</th>
+                                            <th>姓名</th>
+                                            <th>指纹图片</th>
+                                            <th>操作</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="pa,paStat : ${pageInfo.list}" >
+                                            <td th:text="${pa.username}"></td>
+                                            <td th:text="${pa.password}"></td>
+                                            <td th:text="${pa.sex}"></td>
+                                            <td th:text="${pa.age}"></td>
+                                            <td th:text="${pa.name}"></td>
+                                            <td>
+											<img width=50 height=50 th:src="${pa.img}">
+											</td>
+                                            <td><a  th:href="@{/admin/gotoEditUser(id=${pa.id})}">修改</a></td>
+                                            <td><a onclick="javascript:return del();" th:href="@{/admin/userDel(id=${pa.id})}">删除</a></td>
+                                        </tr>
+                                        
+                                        
+                                       
+                                    
+                                    
+                                    </tbody>
+                                </table>
+                                
+                                		
+<table align = "center">
+  <tr>
+  <td width="120px">第<a th:text="${pageNum}"></a>页/共<a th:text="${totalPages}"></a>页</td>
+  
+  <td width="30px"><a th:href="@{/admin/user(pageNum=${firstPage})}">首页</a></td>
+    <td width="60px" th:switch="${pageNum}" style="text-align:center;">
+      <p th:case="1"> <a th:href="@{/admin/user(pageNum=${firstPage})}">上一页</a></p>
+      <p th:case="*"><a th:href="@{/admin/user(pageNum=${pageNum-1})}">上一页</a></p>
+    </td>
+     <td width="60px" th:switch="${pageNum}" style="text-align:center;">
+       <p th:case="${totalPages}"><a th:href="@{/admin/user(pageNum=${totalPages})}">下一页</a></p>
+       <p th:case="*"><a th:href="@{/admin/user(pageNum=${pageNum+1})}">下一页</a></p>
+     </td>
+     <td width="60px"><a th:href="@{/admin/user(pageNum=${totalPages})}">尾页</a></td>
+  </tr>
+</table>			
+			
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+              
+            </div>
+
+        </div>
+    </div>
+
+
+    </div>
+
+    <!-- Mainly scripts -->
+ <script th:src="@{/resource/js/jquery-2.1.1.min.js}" ></script>
+    <script th:src="@{/resource/js/bootstrap.min.js?v=3.4.0}" ></script>
+    <script th:src="@{/resource/js/plugins/metisMenu/jquery.metisMenu.js}"  ></script>
+    <script th:src="@{/resource/js/plugins/slimscroll/jquery.slimscroll.min.js}"  ></script>
+
+
+
+
+</body>
+
+</html>

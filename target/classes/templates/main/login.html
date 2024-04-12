@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+
+    <title></title>
+
+
+
+
+
+   <link  th:href="@{/resource/css/bootstrap.min.css?v=3.4.0}"  rel="stylesheet">
+     <link  th:href="@{/resource/font-awesome/css/font-awesome.css?v=4.3.0}"  rel="stylesheet">
+    <link th:href="@{/resource/css/plugins/iCheck/custom.css}"  rel="stylesheet">
+   <link  th:href="@{/resource/css/animate.css}" rel="stylesheet">
+    <link  th:href="@{/resource/css/style.css?v=2.2.0}" rel="stylesheet">
+    
+    
+<script type="text/javascript">
+		
+	
+function login(){
+	var xhr = new XMLHttpRequest();
+	var username= document.getElementById("username").value;
+	var password= document.getElementById("password").value;
+	var type= document.getElementById("type").value;
+	
+	
+	if(!username){
+		alert("请输入您的用户名.....");
+		document.getElementById("username").value = "";
+		document.getElementById("username").focus();
+		return;
+	}
+	if(!password){
+		alert("请输入您的密码.....");
+		document.getElementById("password").value = "";
+		document.getElementById("password").focus();
+		return;
+	}
+	
+   var params = "username="+username+"&password="+password+"&type="+type;
+	xhr.open("post","/login");
+	xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xhr.onreadystatechange = function(){
+		if(this.readyState==4 && this.status==200){
+			var text = this.responseText.trim();
+			if(text=="success"){
+				window.location.href="/main/index";
+			}
+			if(text=="fail"){
+				alert("您的用户名或者密码不正确.....");
+				document.getElementById("password").value = "";
+				document.getElementById("password").focus();
+				location.reload();
+			}
+		}
+	};
+	xhr.send(params);
+	
+}
+
+		
+		</script>
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">Login</h1>
+
+            </div>
+            <h3>指纹考勤管理系统</h3>
+
+            <form class="m-t" role="form" >
+                <div class="form-group">
+                    <input type="text" id="username" class="form-control" placeholder="用户名" >
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" class="form-control" placeholder="密码" >
+                </div>
+                <div class="form-group">
+                     <select class="form-control" id="type" >
+							<option value="admin">管理员</option>
+							<option value="user">用户</option>
+					</select>
+                </div>
+                <button onclick="login()" type="button" class="btn btn-primary block full-width m-b">登 录</button>
+
+            </form>
+        </div>
+    </div>
+
+
+
+  <!-- Mainly scripts -->
+ <script th:src="@{/resource/js/jquery-2.1.1.min.js}" ></script>
+    <script th:src="@{/resource/js/bootstrap.min.js?v=3.4.0}" ></script>
+    <script th:src="@{/resource/js/plugins/metisMenu/jquery.metisMenu.js}"  ></script>
+    <script th:src="@{/resource/js/plugins/slimscroll/jquery.slimscroll.min.js}"  ></script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="renderer" content="webkit">
+
+    <title></title>
+
+
+
+   <link  th:href="@{/resource/css/bootstrap.min.css?v=3.4.0}"  rel="stylesheet">
+     <link  th:href="@{/resource/font-awesome/css/font-awesome.css?v=4.3.0}"  rel="stylesheet">
+    <link th:href="@{/resource/css/plugins/iCheck/custom.css}"  rel="stylesheet">
+   <link  th:href="@{/resource/css/animate.css}" rel="stylesheet">
+    <link  th:href="@{/resource/css/style.css?v=2.2.0}" rel="stylesheet">
+    
+    
+<script type="text/javascript">
+function s(e, a) {
+	if(e && e.preventDefault)
+		e.preventDefault();
+	else
+		window.event.returnValue = false;
+	a.focus();
+}
+
+</script>
+    
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div th:replace="head::copy">
+           
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                 <div th:replace="head::menu">
+           
+                 </div>
+            </div>
+            
+            <div class="wrapper wrapper-content animated fadeInRight">
+                 
+                <div class="row">
+                    
+                    <div class="col-lg-6">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>修改信息用户</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <form action="/admin/editUser"  enctype="multipart/form-data"  method="post" class="form-horizontal m-t" id="signupForm">
+                                    
+                                      <input type="hidden"   th:value="${pa.id}" name="id"/>
+		
+									<div class="form-group">
+                                        <label class="col-sm-3 control-label">指纹：</label>
+                                        <div class="col-sm-8">
+                                            <img width=50 height=50 th:src="${pa.img}">
+					
+                                        </div>
+                                    </div>
+                                    
+                                     <div class="form-group">
+                                        <label class="col-sm-3 control-label">用户指纹图片：</label>
+                                        <div class="col-sm-8">
+                                            <input type="file"   accept="image/*" name="img"class="form-control">
+                                        </div>
+                                    </div>
+                                     <div class="form-group">
+                                        <label class="col-sm-3 control-label">用户名：</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control"  th:value="${pa.username}" name="username">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">密码：</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control"  th:value="${pa.password}" name="password">
+                                        </div>
+                                    </div>
+                                     <div class="form-group">
+                                        <label class="col-sm-3 control-label">性别：</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-control" name="sex" >
+												<option value="男" th:field="*{pa.sex}">男</option>
+										        <option value="女" th:field="*{pa.sex}">女</option>
+											</select>
+                                        </div>
+                                    </div>
+                                     <div class="form-group">
+                                        <label class="col-sm-3 control-label">年龄：</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control"  th:value="${pa.age}" name="age">
+                                        </div>
+                                    </div>
+                                     <div class="form-group">
+                                        <label class="col-sm-3 control-label">姓名：</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control"  th:value="${pa.name}" name="name">
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <div class="col-sm-8 col-sm-offset-3">
+                                            <button class="btn btn-primary" type="submit">提交</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    </div>
+
+    <!-- Mainly scripts -->
+ <script th:src="@{/resource/js/jquery-2.1.1.min.js}" ></script>
+    <script th:src="@{/resource/js/bootstrap.min.js?v=3.4.0}" ></script>
+    <script th:src="@{/resource/js/plugins/metisMenu/jquery.metisMenu.js}"  ></script>
+    <script th:src="@{/resource/js/plugins/slimscroll/jquery.slimscroll.min.js}"  ></script>
+
+
+    
+    <script>
+        
+        
+    </script>
+
+
+</body>
+
+</html>

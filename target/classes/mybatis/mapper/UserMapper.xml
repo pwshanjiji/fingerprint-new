@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE mapper   
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<mapper namespace = "com.xml.mapper.UserMapper"> 
+
+	<!-- User findAdminByNameAndPwd(@Param("username") String username,@Param("password") String password);
+	 -->
+	 <select id="findAdminByNameAndPwd" parameterType="String"  resultType="user">
+		SELECT
+		*
+		FROM user
+		where username = #{username} and password = #{password}
+	</select> 
+	 
+ 
+	
+	<!--List<user> findList(user hotelType);-->
+	<select id="findList" parameterType="user"  resultType="user">
+		SELECT
+		*
+		FROM user where 1=1
+		<if test="name !=null and name != ''">
+            and name like '%${name}%'
+        </if>
+	</select>
+	
+	<!--Integer delete(@Param("id") Integer id);-->
+	<delete id="delete" parameterType="Integer">  
+        DELETE FROM user WHERE id = #{id}  
+    </delete>  
+	
+	<!--user findById(@Param("id") Integer id);-->
+	<select id="findById" parameterType="Integer"  resultType="user">
+		SELECT
+		*
+		FROM user where id=#{id}
+	</select>
+	
+
+	<!--Integer insert(user hotelType);-->
+    <insert id="insert" parameterType="user">  
+	        INSERT INTO user (username,
+	       					 password,
+	       					 sex,
+	       					 age,
+	       					 name,
+	       					 local,
+        						img
+                                   )  
+	                  VALUES  (#{username},
+	                  			#{password},
+	                  			#{sex},
+	                  			#{age},
+	                  			#{name},
+	                  			#{local},
+	                  			#{img}
+	                          )  
+	 </insert>
+	
+	
+	
+	
+    <!--  Integer update(user hotelType); -->
+	<update id="update" parameterType="user" >
+		UPDATE user  
+		<set>
+            <if test="username != null">username=#{username},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="sex != null">sex=#{sex},</if>
+            <if test="age != null">age=#{age},</if>
+            <if test="name != null">name=#{name},</if>
+            <if test="local != null">local=#{local},</if>
+            <if test="img != null">img=#{img}</if>
+        </set>
+		WHERE id = #{id}
+	</update>
+	
+	
+</mapper>

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: fingerprint
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Administrator
+Implementation-Vendor-Id: com.zy
+Build-Jdk: 1.8.0_161
+Implementation-URL: http://projects.spring.io/spring-boot/fingerprint/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
